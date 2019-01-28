@@ -21,3 +21,36 @@ Object.assign ()과 ES7에 제안 된 스프레드 연산자를 사용하여 객
 02:01 마지막으로, 객체 할당은 ES6의 새로운 메소드이므로 모든 브라우저에서 기본적으로 사용할 수 없다는 것을 기억해야합니다. Babel과 함께 제공되는 독립 실행 형 개체 또는 Polyfill을 할당하는 Polyfill을 사용하여 웹 사이트를 위험에 빠뜨리지 않고 사용할 수 있습니다.
 
 02:21 polyfill을 필요로하지 않는 또 다른 옵션은 ES6의 일부가 아닌 새로운 객체 스프레드 연산자를 사용하는 것입니다. 그러나 ES7에서 제안되었습니다. 그것은 꽤 인기가 있고, 당신이 무대 2 프리셋을 사용한다면 바벨에서 가능합니다.
+
+```js
+const expect = require("expect");
+
+const toggleTodo = todo => {
+  // wrong way
+  // todo.completed = !todo.completed;
+  // return todo;
+  return Object.assign({}, todo, {
+    completed: !todo.completed
+  });
+};
+
+const testToggleTodo = () => {
+  const todoBefore = {
+    id: 0,
+    text: "Learn Redux",
+    completed: false
+  };
+  const todoAfter = {
+    id: 0,
+    text: "Learn Redux",
+    completed: true
+  };
+
+  Object.freeze(todoBefore);
+
+  expect(toggleTodo(todoBefore)).toEqual(todoAfter);
+};
+
+testToggleTodo();
+console.log("Pass Test");
+```
