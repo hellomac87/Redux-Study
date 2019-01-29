@@ -24,6 +24,62 @@ Redux Store에 대해 배우고 세 가지 방법으로 카운터 애플리케�
 
 02:51 그래서 이 logic을 render 메서드로 추출합니다. 이 작업에 렌더링 메소드를 등록합니다. 초기 상태를 렌더링하기 위해 한 번 호출합니다. 이제는 0으로 렌더링되고 클릭은 카운터를 증가시킵니다. 이것이 Redux 응용 프로그램의 첫 번째 작업입니다.
 
+## createStore 생성자(?) 메소드(?)를 통해 생성된 store 는 어떻게 생겼을까?
+
+```js
+const { createStore } = require("redux");
+
+const store = createStore(counter);
+
+function counter(state = 0, action) {
+  switch (action.type) {
+    case "INCREMENT":
+      return state + 1;
+    case "DECREMENT":
+      return state - 1;
+    default:
+      return state;
+  }
+}
+```
+
+```
+{ dispatch: [Function: a],
+  subscribe: [Function: f],
+  getState: [Function: u],
+  replaceReducer: [Function: c],
+  [Symbol(observable)]: [Function: s] }
+```
+
+이 단락에서 배울 `dispatch`,`subscribe`,`getState`가 들어있는 것을 확인 할 수 있다.
+
+그냥 한번 실행시켜보자.
+
+```bash
+   store.getState();
+=> 0
+
+   store.subscribe()
+Error: Expected the listener to be a function.
+    at Object.f [as subscribe]:1:1783
+    at eval:1:7
+    at eval
+    at new Promise
+
+   store.dispatch()
+Error: Actions must be plain objects. Use custom middleware for async actions.
+    at Object.a [as dispatch]:1:2481
+    at eval:1:7
+    at eval
+    at new Promise
+```
+
+`getState`는 현재 상태를 가져오는 듯 하다.
+`subscribe`는 listener 함수가 인자로 필요한 듯 하다.
+`dispatch`는 액션은 일반 객체 여야합니다.(인자로 객체타입의 액션을 넘겨야 하는 듯 하다.) 비동기 작업을 위해 맞춤식 미들웨어 사용해야하는듯 하다. 그런데 무슨말인지 모르겠당. 일단 넘어가자
+
+## 전체 예제코드
+
 ```html
 <!DOCTYPE html>
 <html>
