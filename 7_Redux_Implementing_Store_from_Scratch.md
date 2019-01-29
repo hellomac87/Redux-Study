@@ -4,7 +4,7 @@ Redux Store의 합리적인 근사를 20 줄로 작성하는 방법을 배웁니
 
 ## Transcript
 
-00:00 이전 비디오에서는 Redux에서 제공하는 createStore 함수와 반환하는 store 객체를 사용하여 간단한 counter를 구현하는 방법을 살펴 보았습니다.이 객체는 현재 어플리케이션 state를 가져 오는 method, action을 디스 패칭하여 현재 어플리케이션 상태를 변경하는 dispatch method, 그리고 변경 사항을 subscribe하고 어플리케이션 상태를 다시 렌더링하는 subscribe method 를 제공합니다.
+00:00 이전 비디오에서는 Redux에서 제공하는 createStore 함수와 반환하는 store 객체를 사용하여 간단한 counter를 구현하는 방법을 살펴 보았습니다.이 객체는 현재 어플리케이션 state를 가져 오는 `getState` method, action을 dispatch 하여 현재 어플리케이션 state를 변경하는 `dispatch` method, 그리고 변경 사항을 subscribe하고 어플리케이션 상태를 다시 렌더링하는 `subscribe` method 를 제공합니다.
 
 00:29 당신이 나를 좋아한다면 당신이 사용하고있는 도구를 이해하는 것을 선호합니다. 이 튜토리얼에서는 Redux가 제공하는 createStore 함수를 처음부터 다시 구현할 것입니다. 지금까지 createStore 함수에 인수로 알았던 유일한 형식은 응용 프로그램에서 제공하는 reducer 함수입니다.
 
