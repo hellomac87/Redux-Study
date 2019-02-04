@@ -11,7 +11,11 @@ import App from "./components/App";
 import "./index.css";
 import * as serviceWorker from "./serviceWorker";
 
-const store = createStore(todoApp);
+const persistedState = {};
+
+const store = createStore(todoApp, persistedState);
+
+console.log(store.getState());
 
 ReactDOM.render(
   <Provider store={store}>
