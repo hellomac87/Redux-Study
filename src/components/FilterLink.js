@@ -1,9 +1,9 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const FilterLink = ({ filter, children }) => {
   return (
-    <Link
+    <NavLink
       to={filter === "all" ? "" : filter}
       activeStyle={{
         textDecoration: "none",
@@ -11,7 +11,7 @@ const FilterLink = ({ filter, children }) => {
       }}
     >
       {children}
-    </Link>
+    </NavLink>
   );
 };
 
