@@ -6,16 +6,27 @@ import { Provider } from "react-redux";
 
 import todoApp from "./reducers";
 
+import { loadState, saveState } from "./localStorage";
+import { throttle } from "lodash";
+
 import App from "./components/App";
 
 import "./index.css";
 import * as serviceWorker from "./serviceWorker";
 
-const persistedState = {};
+const persistedState = loadState();
 
 const store = createStore(todoApp, persistedState);
 
-console.log(store.getState());
+store.subscribe(
+  throttle(
+    () =>
+      saveState({
+        todos: store.getState().todos
+      }),
+    1000
+  )
+);
 
 ReactDOM.render(
   <Provider store={store}>
