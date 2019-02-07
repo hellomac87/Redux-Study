@@ -7,14 +7,14 @@ component가 의존하지 않도록 하는 법을 배웁니다.
 
 ```js
 // ... todos reducer
-export const getVisibleTodos = (todos, filter) => {
+export const getVisibleTodos = (state, filter) => {
   switch (filter) {
     case "all":
-      return todos;
+      return state;
     case "completed":
-      return todos.filter(t => t.completed);
+      return state.filter(t => t.completed);
     case "active":
-      return todos.filter(t => !t.completed);
+      return state.filter(t => !t.completed);
     default:
       throw new Error(`Unknown filter: ${filter}.`);
   }
