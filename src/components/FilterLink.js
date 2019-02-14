@@ -7,7 +7,7 @@ const FilterLink = ({ filter, children }) => {
       to={filter === "all" ? "" : filter}
       activeStyle={{
         textDecoration: "none",
-        color: "black"
+        color: "red"
       }}
     >
       {children}
