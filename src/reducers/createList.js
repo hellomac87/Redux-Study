@@ -20,7 +20,7 @@ const createList = filter => {
     switch (action.type) {
       case "REQUEST_TODOS":
         return true;
-      case "REQUEST_TODOS":
+      case "RECEIVE_TODOS":
         return false;
       default:
         return state;
